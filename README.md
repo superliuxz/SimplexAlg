@@ -1,1 +1,1 @@
-# SimplexSimplex Algorithm in Matrix Notation
+# Simplex Algorithm in Matrix Notation
