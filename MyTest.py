@@ -20,7 +20,7 @@ class TestSimplex(unittest.TestCase):
 		A = A.reshape((2, 3))
 		b = np.matrix([1.0, 3.0, 5.0])
 		c = np.matrix([4.0, 3.0])
-		self.assertEqual(31.0, self.list.testSimplex([A, b, c]))
+		self.assertAlmostEqual(31.0, self.list.testSimplex([A, b, c]))
 
 	# problem 2.1, primal simplex, z = 17
 	def testSimplexTwo(self):		
@@ -29,7 +29,7 @@ class TestSimplex(unittest.TestCase):
 		A = A.reshape((4, 2))
 		b = np.matrix([5.0, 3.0])
 		c = np.matrix([6.0, 8.0, 5.0, 9.0])
-		self.assertEqual(17.0, self.list.testSimplex([A, b, c]))
+		self.assertAlmostEqual(17.0, self.list.testSimplex([A, b, c]))
 
 	# problem 2.4, dual simplex, z = -3
 	def testDual(self):
@@ -38,7 +38,7 @@ class TestSimplex(unittest.TestCase):
 		A = A.reshape((3, 2))
 		b = np.matrix([-5.0, 4.0])
 		c = np.matrix([-1.0, -3.0, -1.0])
-		self.assertEqual(-3.0, self.list.testSimplex([A, b, c]))
+		self.assertAlmostEqual(-3.0, self.list.testSimplex([A, b, c]))
 
 	# problem 2.3, 2-phase, z = -3
 	def testTwoPhase(self):
@@ -47,7 +47,7 @@ class TestSimplex(unittest.TestCase):
 		A = A.reshape((3, 2))
 		b = np.matrix([-2.0, 1.0])
 		c = np.matrix([2.0, -6.0, 0.0])
-		self.assertEqual(-3.0, self.list.testSimplex([A, b, c]))
+		self.assertAlmostEqual(-3.0, self.list.testSimplex([A, b, c]))
 
 	# example of sec 7 chap 5, 2-phase, unbounded
 	def testTwoPhaseTwo(self):
@@ -56,7 +56,7 @@ class TestSimplex(unittest.TestCase):
 		A = A.reshape((2, 3))
 		b = np.matrix([4, -8, -7])
 		c = np.matrix([-1, 4])
-		self.assertEqual("unbounded", self.list.testSimplex([A, b, c]))	
+		self.assertAlmostEqual("unbounded", self.list.testSimplex([A, b, c]))	
 
 	# using strong dual theorem to test the optimality. same dictionary as test 1
 	def testOptimality(self):		
@@ -65,7 +65,7 @@ class TestSimplex(unittest.TestCase):
 		A = A.reshape((2, 3))
 		b = np.matrix([1.0, 3.0, 5.0])
 		c = np.matrix([4.0, 3.0])
-		self.assertEqual(0, self.list.testSimplex([A, b, c]) + self.list.testSimplex([-np.transpose(A), -c, -b]))
+		self.assertAlmostEqual(0, self.list.testSimplex([A, b, c]) + self.list.testSimplex([-np.transpose(A), -c, -b]))
 
 	# trivial case, where the dictionary is already optimal. dictionary modified from test 1
 	def testTrivial(self):		
@@ -74,7 +74,7 @@ class TestSimplex(unittest.TestCase):
 		A = A.reshape((2, 3))
 		b = np.matrix([1.0, 3.0, 5.0])
 		c = np.matrix([-4.0, -3.0])
-		self.assertEqual("optimal", self.list.testSimplex([A, b, c]))
+		self.assertAlmostEqual("optimal", self.list.testSimplex([A, b, c]))
 
 def suite():
 	suite = unittest.TestSuite()
